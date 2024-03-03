@@ -3,9 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Rock, Paper, Scissors</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="public/img/landing_page.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
 </head>
-<body>
-    
+
+<body class="font-merriweather_sans">
+    <div class="min-h-screen p-20 bg-gradient-to-b from-sky-900 to-sky-500" id="start-page">
+        <h1 class="sm:text-3xl lg:text-5xl text-white text-center sm:mb-14 lg:mb-20">Rock, Paper, Scissors Game!</h1>
+        <div class="flex justify-center">
+            <img src="./public/img/landing_page.png" alt="" srcset="">
+        </div>
+        <div class="flex justify-center mt-10">
+            <button class="bg-yellow-300 sm:text-2xl lg:text-3xl text-slate-700 animate-pulse w-52 rounded-full shadow-lg p-3" onclick="startGame()">Play!</button>
+        </div>
+
+        <div class="text-center text-slate-300 mt-20">&copy; Copyright 2024 - JessDY</div>
+
+    </div>
+
+    <div class="sm:min-h-screen lg:h-screen p-8 bg-gradient-to-b from-sky-900 to-sky-500 overflow-hidden hidden" id="game-page">
+        
+        <h1 class="sm:text-lg lg:text-3xl text-white text-center mb-6">Rock, Paper, Scissors Game!</h1>
+        
+        <div class="flex justify-center mb-6">
+            <div class="flex justify-evenly items-center bg-blue-200 rounded-2xl sm:px-5 sm:py-2 lg:px-10 lg:py-2">
+                <div class="px-5">
+                    <h3 class="mb-4 sm:text-sm md:text-md font-semibold">Player</h3>
+                    <div id="player-score" class="bg-slate-900 flex justify-center items-center rounded-xl text-lg size-8 mx-auto mb-2">
+                        <p id="player-score-value" class="text-white text-lg">0</p>
+                    </div>
+                </div>
+                
+                <div class="px-5">
+                    <h3 class="mb-4 text-md font-semibold">Computer</h3>
+                    <div id="computer-score" class="bg-slate-900 flex justify-center items-center rounded-xl text-lg size-8 mx-auto mb-2">
+                        <p id="computer-score-value" class="text-white text-lg">0</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sm:block md:flex justify-evenly items-center mb-6 sm:mx-auto">
+            <div>
+                <h2 class="text-white sm:text-lg lg:text-2xl text-center mb-5">Player</h2>
+        
+                <div id="user-choice" class="bg-yellow-200 rounded-full sm:size-40 md:size-56 lg:size-96 flex justify-center items-center relative sm:mx-auto">
+                    <div class="menu-container absolute top-0 h-full flex flex-col justify-center">
+                        <button onclick="selectMove('rock')" class="menu-item bg-blue-500 hover:bg-blue-700 text-white font-bold sm:px-2 md:py-2 md:px-4 rounded-full mb-4">Rock</button>
+                        <button onclick="selectMove('paper')" class="menu-item bg-blue-500 hover:bg-blue-700 text-white font-bold sm:px-2 md:py-2 md:px-4 rounded-full mb-4">Paper</button>
+                        <button onclick="selectMove('scissors')" class="menu-item bg-blue-500 hover:bg-blue-700 text-white font-bold sm:px-2 md:py-2 md:px-4 rounded-full mb-4">Scissors</button>
+                    </div>
+                </div>
+            </div>
+        
+            <div>
+                <img src="./public/img/vs.png" alt="" srcset="" class="sm:size-24 lg:size-60 sm:mx-auto">
+            </div>
+        
+            <div>
+                <h2 class="text-white sm:text-lg lg:text-2xl text-center mb-5">Computer</h2>
+        
+                <div class="bg-yellow-200 rounded-full sm:size-40 md:size-56 lg:size-96 flex justify-center items-center sm:mx-auto">
+                    <img id="computer-choice-img" src="" alt="" class="sm:size-24 lg:size-64 hidden">
+                </div>
+            </div>
+        </div>
+
+        <div class="flex justify-center items-center">
+            <div class="text-white sm:text-sm md:text-lg">
+                <p class="">The best score out of 3 is the winner</p>
+        
+                <div id="game-result" class="text-center mt-4 hidden">
+                    <p>You choose <span id="user-choice-span" class="font-bold"></span></p>
+                    <p>Computer choose <span id="computer-choice-span" class="font-bold"></span></p>
+                    <p id="result-text" class="font-bold"></p>
+                </div>
+
+                <div class="flex justify-center mb-6">
+                    <button id="next-round-button" class="bg-green-500 hover:bg-green-700 mt-2 text-white font-bold py-2 px-4 rounded-full hidden" onclick="nextRound()">Next Round</button>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="text-center text-slate-300 ">&copy; Copyright 2024 - JessDY</div>
+    </div>
+
+    <div id="modal" class="fixed inset-0 flex items-center justify-center w-full bg-gray-900 bg-opacity-50 backdrop-blur-md hidden">
+        <div class="bg-white p-8 rounded-lg text-center">
+            <p id="modal-message" class="text-5xl">You win!</p>
+            <p class="text-slate-500 my-6">Thanks for playing this simple game</p>
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="playAgain()">Play Again</button>
+        </div>
+    </div>
 </body>
 </html>
