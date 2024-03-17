@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./index.html"],
+  content: ["./tailwind-components/**/*.{html,js}"],
   theme: {
     extend: {
       screens: {
@@ -8,10 +8,14 @@ module.exports = {
         'md': '481px',
       },
       fontFamily:{
-        merriweather_sans:['Merriweather Sans']
+        merriweather_sans:['Merriweather Sans'],
+        plusJakarta: ["Plus Jakarta Sans", "sans-serif"],
       },
       scale: {
         '-100': '-1',
+      },
+      boxShadow: {
+        'custom': '0px 4px 8px 0px #0000001E',
       },
     },
   },
